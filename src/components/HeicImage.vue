@@ -11,7 +11,9 @@
       @error="handleImageError"
     />
     <div v-if="isLoading" class="vue-heic-image__loading">
-      <slot name="loading">Loading...</slot>
+      <slot name="loading" :is-heic="isHeic">
+        <span>{{ isHeic ? 'Converting HEIC...' : 'Loading image...' }}</span>
+      </slot>
     </div>
     <div v-if="error" class="vue-heic-image__error">
       <slot name="error" :error="error">{{ error.message }}</slot>
@@ -32,7 +34,7 @@ const props = withDefaults(defineProps<HeicImageProps>(), {
 });
 
 const imageUrl = ref<string | null>(null);
-const { convertHeicToImage, isLoading, error } = useHeicImage({
+const { convertHeicToImage, isLoading, error, isHeic } = useHeicImage({
   toType: props.toType,
   quality: props.quality,
   multiple: props.multiple,
@@ -84,6 +86,10 @@ onMounted(() => {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .vue-heic-image__error {

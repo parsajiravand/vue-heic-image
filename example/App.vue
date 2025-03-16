@@ -4,24 +4,30 @@
     
     <div class="demo-section">
       <h2>Component Usage</h2>
-      <input type="file" accept=".heic" @change="handleFileSelect" />
+      <input 
+        type="file" 
+        accept="image/*,.heic" 
+        @change="handleFileSelect" 
+      />
       
       <div v-if="selectedFile" class="image-preview">
         <HeicImage
           :src="selectedFile"
-          alt="HEIC Preview"
+          alt="Image Preview"
           :toType="outputFormat"
           :quality="quality"
           :multiple="false"
           class="preview-image"
         >
-          <template #loading>
-            <div class="loading-spinner">Converting...</div>
+          <template #loading="{ isHeic: isHeicImage }">
+            <div class="loading-spinner">
+              {{ isHeicImage ? 'Converting HEIC...' : 'Loading image...' }}
+            </div>
           </template>
         </HeicImage>
       </div>
       
-      <div class="controls">
+      <div class="controls" v-if="selectedFile">
         <label>
           Output Format:
           <select v-model="outputFormat">
@@ -41,14 +47,25 @@
     
     <div class="demo-section">
       <h2>Composable Usage</h2>
-      <input type="file" accept=".heic" @change="handleComposableFileSelect" />
+      <input 
+        type="file" 
+        accept="image/*,.heic" 
+        @change="handleComposableFileSelect" 
+      />
       
       <div v-if="composableImageUrl" class="image-preview">
         <img :src="composableImageUrl" alt="Converted Image" class="preview-image" />
       </div>
       
-      <div v-if="isLoading" class="loading-spinner">Converting...</div>
+      <div v-if="isLoading" class="loading-spinner">
+        {{ isHeic ? 'Converting HEIC...' : 'Loading image...' }}
+      </div>
       <div v-if="error" class="error">{{ error.message }}</div>
+      
+      <div v-if="selectedComposableFile" class="file-info">
+        <p>File type: {{ selectedComposableFile.type || 'Unknown' }}</p>
+        <p>Is HEIC: {{ isHeic ? 'Yes' : 'No' }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -71,12 +88,15 @@ const handleFileSelect = (event: Event) => {
 
 // Composable demo
 const composableImageUrl = ref<string | null>(null);
-const { convertHeicToImage, isLoading, error } = useHeicImage();
+const selectedComposableFile = ref<File | null>(null);
+const { convertHeicToImage, isLoading, error, isHeic } = useHeicImage();
 
 const handleComposableFileSelect = async (event: Event) => {
   const file = (event.target as HTMLInputElement).files?.[0];
   if (!file) return;
 
+  selectedComposableFile.value = file;
+  
   try {
     const result = await convertHeicToImage(file);
     const blob = Array.isArray(result) ? result[0] : result;
@@ -96,6 +116,9 @@ const handleComposableFileSelect = async (event: Event) => {
 
 .demo-section {
   margin-bottom: 40px;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
 }
 
 .image-preview {
@@ -120,10 +143,26 @@ const handleComposableFileSelect = async (event: Event) => {
   padding: 20px;
   text-align: center;
   color: #666;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
 }
 
 .error {
   color: #dc3545;
   margin-top: 10px;
+  padding: 10px;
+  background: #ffe6e6;
+  border-radius: 4px;
+}
+
+.file-info {
+  margin-top: 20px;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.file-info p {
+  margin: 5px 0;
 }
 </style> 

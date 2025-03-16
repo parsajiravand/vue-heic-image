@@ -1,10 +1,12 @@
 import { ref, watch } from 'vue';
 import heic2any from 'heic2any';
 import type { HeicOptions } from '../types';
+import { isHeicImage, getFileType } from '../utils/fileUtils';
 
 export function useHeicImage(options: HeicOptions = {}) {
   const isLoading = ref(false);
   const error = ref<Error | null>(null);
+  const isHeic = ref(false);
 
   const convertHeicToImage = async (
     source: File | Blob | string,
@@ -20,6 +22,15 @@ export function useHeicImage(options: HeicOptions = {}) {
         blob = await response.blob();
       } else {
         blob = source;
+      }
+
+      // Check if it's a HEIC image
+      const fileType = await getFileType(blob);
+      isHeic.value = isHeicImage(blob) || fileType === 'image/heic';
+
+      // If not HEIC, return the original blob
+      if (!isHeic.value) {
+        return blob;
       }
 
       const mergedOptions = {
@@ -52,5 +63,6 @@ export function useHeicImage(options: HeicOptions = {}) {
     convertHeicToImage,
     isLoading,
     error,
+    isHeic,
   };
 } 
