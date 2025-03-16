@@ -6,7 +6,7 @@ A Vue 3 component and composable for displaying and converting HEIC images in th
 
 Check out the live demo: [Vue HEIC Image Demo](https://vue-heic-image.netlify.app)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/YOUR-NETLIFY-ID/deploy-status)](https://app.netlify.com/sites/vue-heic-image/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8666b46e-9d5f-4819-8c9e-e37583cc77dc/deploy-status)](https://app.netlify.com/sites/vue-heic-image/deploys)
 
 ## Features
 

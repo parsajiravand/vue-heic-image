@@ -15,17 +15,7 @@
       </a>
     </div>
 
-    <div class="sample-images">
-      <h3>Sample HEIC Images</h3>
-      <div class="sample-links">
-        <a href="https://github.com/parsajiravand/vue-heic-image/raw/main/example/assets/sample1.heic" download class="sample-link">
-          Download Sample HEIC 1
-        </a>
-        <a href="https://github.com/parsajiravand/vue-heic-image/raw/main/example/assets/sample2.heic" download class="sample-link">
-          Download Sample HEIC 2
-        </a>
-      </div>
-    </div>
+
     
     <div class="demo-section">
       <h2>Component Usage</h2>
