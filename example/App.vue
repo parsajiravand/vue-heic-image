@@ -2,6 +2,31 @@
   <div class="app">
     <h1>Vue HEIC Image Demo</h1>
     
+    <div class="github-links">
+      <a href="https://github.com/parsajiravand/vue-heic-image" target="_blank" class="github-link">
+        📦 GitHub Repository
+      </a>
+      <a href="https://github.com/parsajiravand/vue-heic-image/blob/master/example/App.vue" target="_blank" class="github-link">
+        📝 Example Source Code
+      </a>
+      <!-- npm package -->
+      <a href="https://www.npmjs.com/package/vue-heic-image" target="_blank" class="github-link">
+        📦 NPM Package
+      </a>
+    </div>
+
+    <div class="sample-images">
+      <h3>Sample HEIC Images</h3>
+      <div class="sample-links">
+        <a href="https://github.com/parsajiravand/vue-heic-image/raw/main/example/assets/sample1.heic" download class="sample-link">
+          Download Sample HEIC 1
+        </a>
+        <a href="https://github.com/parsajiravand/vue-heic-image/raw/main/example/assets/sample2.heic" download class="sample-link">
+          Download Sample HEIC 2
+        </a>
+      </div>
+    </div>
+    
     <div class="demo-section">
       <h2>Component Usage</h2>
       <input 
@@ -67,6 +92,15 @@
         <p>Is HEIC: {{ isHeic ? 'Yes' : 'No' }}</p>
       </div>
     </div>
+
+    <footer class="footer">
+      <p>Created by <a href="https://github.com/parsajiravand" target="_blank">Parsa Jiravand</a></p>
+      <p>
+        <a href="https://www.npmjs.com/package/vue-heic-image" target="_blank">NPM Package</a>
+        |
+        <a href="https://github.com/parsajiravand/vue-heic-image/blob/main/LICENSE" target="_blank">MIT License</a>
+      </p>
+    </footer>
   </div>
 </template>
 
@@ -112,6 +146,57 @@ const handleComposableFileSelect = async (event: Event) => {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+}
+
+.github-links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: #24292e;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.github-link:hover {
+  background: #2c3238;
+}
+
+.sample-images {
+  margin: 30px 0;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.sample-links {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.sample-link {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.sample-link:hover {
+  background: #0056b3;
 }
 
 .demo-section {
@@ -164,5 +249,22 @@ const handleComposableFileSelect = async (event: Event) => {
 
 .file-info p {
   margin: 5px 0;
+}
+
+.footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  text-align: center;
+  color: #666;
+}
+
+.footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
 }
 </style> 

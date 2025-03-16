@@ -2,6 +2,12 @@
 
 A Vue 3 component and composable for displaying and converting HEIC images in the browser. This package provides an easy way to preview HEIC images and convert them to other formats like PNG, JPEG, or GIF. It intelligently handles both HEIC and standard image formats.
 
+## 🚀 Live Demo
+
+Check out the live demo: [Vue HEIC Image Demo](https://vue-heic-image.netlify.app)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/YOUR-NETLIFY-ID/deploy-status)](https://app.netlify.com/sites/vue-heic-image/deploys)
+
 ## Features
 
 - 🖼️ Display HEIC images directly in the browser
